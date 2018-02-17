@@ -21,12 +21,25 @@ This project is to analyze severe weather in the United States between 2010-2016
 
 ### Resources and Datasets
 
-- Severe Weather data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/wcm/#data)
+Severe Weather data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/wcm/#data)
 <p align="center"> 
-  ![alt text](images/Dataset.png)
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/DataSet.png" 
  </p>
+  
  ### Inspiring Visualizations
 
-![alt text](proposal_img/map_one.jpg)
-![alt text](proposal_img/map_two.jpg)
-![alt text](proposal_img/map_three.jpg)
+<p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img2.png"
+ </p>
+   <p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img1.png"
+ </p>
+  
+  <p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img3.png"
+ </p>
+ 
+ <p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img4.png"
+ </p>
+            
