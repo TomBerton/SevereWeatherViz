@@ -23,7 +23,7 @@ This project is to analyze severe weather in the United States between 2010-2016
 
 - Severe Weather data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/wcm/#data)
 <p align="center"> 
-  <img src="https://github.com/TomBerton/Mission-to-Mars/blob/master/Mission-to-Mars_files/Mission_to_Mars_screenshot.png" width="500"/>
+  ![alt text](images/Dataset.png)
  </p>
  ### Inspiring Visualizations
 
