@@ -21,12 +21,33 @@ This project is to analyze severe weather in the United States between 2010-2016
 
 ### Resources and Datasets
 
-- Severe Weather data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/wcm/#data)
+Severe Weather data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/wcm/#data)
 <p align="center"> 
-  <img src="https://github.com/TomBerton/Mission-to-Mars/blob/master/Mission-to-Mars_files/Mission_to_Mars_screenshot.png" width="500"/>
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/DataSet.png" 
  </p>
+  
  ### Inspiring Visualizations
+<h5>Heatmap </h5>
+<p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img1.png"
+ </p>
+<h5> Stacked bar chart with metadata on hover. </h5>
+   <p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img3.png"
+ </p>
+ <h5>Pie chart with metadate on hover. </h5>
+     <p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img5.png"
+ </p>
+  <h5>Bubble chart with metadate on hover.</h5>
+ <p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img4.png"
+ </p>
+  
 
-![alt text](proposal_img/map_one.jpg)
-![alt text](proposal_img/map_two.jpg)
-![alt text](proposal_img/map_three.jpg)
+### Website Wireframe
+#### Wireframe of the approximate final design.
+
+<p align="center"> 
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/Wireframe.jpg"
+ </p>
