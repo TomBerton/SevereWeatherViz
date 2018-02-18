@@ -19,7 +19,7 @@ This project is to analyze severe weather in the United States between 2010-2016
 <li> Visualization of the number and type of severe weather by state using a stacked bar chart for the chose year</li>
 <li> Visualiztion of the intensity and number of weather events using a bubble chart.</li>
   <li> Visualization of the total damage by year for each type of severe weather using a pie chart, displaying metadata on hover.</li>
- 
+  </ul>
 
 ### Resources and Datasets
 -----
