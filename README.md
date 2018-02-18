@@ -27,19 +27,19 @@ Severe Weather data from the [NOAA Storm Prediction Center](http://www.spc.noaa.
  </p>
   
  ### Inspiring Visualizations
-1. Heatmap 
+<h5>Heatmap </h5>
 <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img1.png"
  </p>
-2. Stacked bar chart with metadata on hover. 
+<h5> Stacked bar chart with metadata on hover. </h5>
    <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img3.png"
  </p>
- 3. Pie chart with metadate on hover. 
+ <h5>Pie chart with metadate on hover. </h5>
      <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img5.png"
  </p>
- 4. Bubble chart with metadate on hover.
+  <h5>Bubble chart with metadate on hover.</h5>
  <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img4.png"
  </p>
