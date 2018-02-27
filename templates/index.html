@@ -19,7 +19,11 @@
   <!-- Plotly -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- Our CSS -->
+<<<<<<< HEAD
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+=======
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+>>>>>>> origin/BubbleChart
 </head>
 
 <body>
@@ -34,13 +38,13 @@
     <div class="row">
         <div class="col-md-1">
             <select name="yearDropDown" id="yearDropDown" onchange="getYearCharts(this.value)">
-                <option value="2010">2010</option>
-                <option value="2011">2011</option>
-                <option value="2012">2012</option>
-                <option value="2013">2013</option>
-                <option value="2014">2014</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
+                <option value=2010>2010</option>
+                <option value=2011>2011</option>
+                <option value=2012>2012</option>
+                <option value=2013>2013</option>
+                <option value=2014>2014</option>
+                <option value=2015>2015</option>
+                <option value=2016>2016</option>
             </select>
         </div>
     </div>
@@ -57,7 +61,7 @@
         </div>
     </div>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <!-- <h4>Heres where we can put our bubble chart</h4> -->
         <div id="bubble-chart">
         </div>
@@ -66,6 +70,10 @@
   </div>
 </div>
   <!-- Our JS -->
+<<<<<<< HEAD
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+=======
+  <script type="text/javascript" src="{{ url_for('static', filename='js/logic.js') }}"></script>
+>>>>>>> origin/BubbleChart
 </body>
 </html>
