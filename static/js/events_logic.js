@@ -78,8 +78,6 @@ function buildMap(year, tornadoData, hailData, windData) {
     
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
-    createMap(tornadoMarkers);
-
 }
 
 function buildLayer(year, geoJson, title) {
