@@ -116,39 +116,12 @@ Plotly.newPlot('pie-chart', data);
 //function to render charts based on year
 function getYearCharts(year){
 
-  var data = [];
-  switch(year){
-    case "2010":
-      data = [1,2,3,4,5];
-      break;
-    
-    case "2011":
-      data = [2,3,4,5,6];
-      break;
-    
-    case "2012":
-      data = [3,6,11,51,2];
-      break;
-    
-    case "2013":
-      data = [4,77,54,3,2];
-      break;
-    
-    case "2014":
-      data = [49,55,1010,30,4];
-      break;
-
-    case "2015":
-      data = [123,44,5,78,45];
-      break;
-
-    case "2016":
-      data = [90,53,81,3,37];
-      break;
-  }
+  
   // updatePieChart(data);
 
   renderBubble(year);
+  getBubblePlotData(year);
+  renderStackedBar(year);
 }
 // make a function that renders a pie chart based on the given data value
 function renderPie(data){
@@ -255,6 +228,77 @@ function getBubblePlotData(year){
   
 }   
 
+function renderStackedBar(year){
+  var url = "/events/" + year
+  d3.json(url, function(error, response){
+    if(error) console.warn(error);
+    var listOfStates = []
+    var listOfTorn = []
+    var listOfHail = []
+    var listOfWind = []
+    for (var i = 0; i <response.length;i++){
+      var currentState = response[i]
+      var state = currentState["ST"];
+      var tornEvents = currentState["Tornados"];
+      var hailEvents = currentState["Hail"];
+      var windEvents = currentState["Wind"];
+      listOfStates.push(state)
+      listOfTorn.push(tornEvents)
+      listOfHail.push(hailEvents)
+      listOfWind.push(windEvents)
+    }
+    var trace1 = {
+      x: listOfStates,
+      y: listOfTorn,
+      name: "Tornados",
+      type: "bar",
+      marker: {
+      color: "orange"
+      }
+    };
+    var trace2 = {
+      x: listOfStates,
+      y: listOfHail,
+      name: "Hail",
+      type: "bar",
+      marker:{
+      color : "skyblue"
+      }
+    };
 
+    var trace3 = {
+      x: listOfStates,
+      y: listOfWind,
+      name: "Wind",
+      type: "bar",
+      marker: {
+      color : "red"
+      }
+    };
+    var data = [trace1, trace2, trace3];
+    var layout = {
+      title: `Events for year ${year}`,
+      barmode: "stack",
+      titlefont: {
+        family: "Calibri Heading",
+        size: 18},
+        xaxis: {
+          title: "State",
+          titlefont: {
+              family: "Calibri Heading",
+              size: 14}},
+          yaxis: {
+          title: "Event Count",
+          titlefont: {
+              family: "Calibri Heading",
+              size: 14}} 
+    };
+    Plotly.newPlot("stacked-bar-chart", data, layout)
+  })
+}
+function init(){
 getBubblePlotData(2010);
+renderStackedBar(2010);
+}
 
+init();
