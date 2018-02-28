@@ -209,17 +209,17 @@ function getYearCharts(year){
     getBubblePlotData(year);
     renderStackedBar(year);
     // code to destroy and replace the map
-    // rerenderMapDiv();
+    rerenderMapDiv();
     getMap(year);
 }
 
-// function rerenderMapDiv(){
-//     map.remove();
-//     var newMapDiv = document.createElement("div");
-//     newMapDiv.id = "map";
-//     var firstChild = document.body.firstChild;
-//     document.body.insertBefore(newMapDiv, firstChild);
-// }
+function rerenderMapDiv(){
+    map.remove();
+    var newMapDiv = document.createElement("div");
+    newMapDiv.id = "map";
+    var firstChild = document.body.firstChild;
+    document.body.insertBefore(newMapDiv, firstChild);
+}
 // make a function that renders a bubble chart based on the given data value
 function renderBubble(year){
   getBubblePlotData(year);
