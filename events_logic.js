@@ -7,25 +7,18 @@ var light = L.tileLayer("http://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?a
     "pk.eyJ1IjoidGJlcnRvbiIsImEiOiJjamRoanlkZXIwenp6MnFuOWVsbGo2cWhtIn0.zX40X0x50dpaN96rKQKarw");
 
 //  query URL
-var tornadoURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/tornados_2010.json";
-var hailURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/hail_2010.json";
-var windURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/wind_2010.json";
+var tornadoURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/tornado.json";
+var hailURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/hail.json";
+var windURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/wind.json";
 
-// createTornadoMap()
- // add map
- var myMap = L.map("map", {
-  center: [
-      37.09, -95.71
-  ],
-  zoom: 4,
-  layers: [streets]
-});
 
 
 // 1. d3.json to get tornado data
   // 2. d3.json to get hail data
     // 3. d3.json to get wind data
       // 4. build map
+      
+// hard code the year      
 var year = 2010;
 
 function getMap(year) {
@@ -72,8 +65,20 @@ function buildMap(year, tornadoData, hailData, windData) {
         "Hail": hailMarkers,
         "Wind": windMarkers
     };
+
+    // add map
+    var myMap = L.map("map", {
+        center: [
+            37.09, -95.71
+        ],
+        zoom: 4,
+        layers: [streets, tornadoMarkers]
+    });
+  
     
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+
+    createMap(tornadoMarkers);
 
 }
 
