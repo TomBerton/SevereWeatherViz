@@ -208,11 +208,17 @@ function getYearCharts(year){
     renderBubble(year);
     getBubblePlotData(year);
     renderStackedBar(year);
-    // getMap(year);
+    // code to destroy and replace the map
+    rerenderMapDiv();
+    getMap(year);
 }
-// make a function that renders a pie chart based on the given data value
-function renderPie(data){
 
+function rerenderMapDiv(){
+    map.remove();
+    var newMapDiv = document.createElement("div");
+    newMapDiv.id = "map";
+    var firstChild = document.body.firstChild;
+    document.body.insertBefore(newMapDiv, firstChild);
 }
 // make a function that renders a bubble chart based on the given data value
 function renderBubble(year){
