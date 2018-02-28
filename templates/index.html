@@ -14,6 +14,10 @@
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <!-- Marker Cluster JS & CSS -->
+  <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
   <!-- D3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
   <!-- Plotly -->
@@ -23,33 +27,25 @@
 </head>
 
 <body>
-  <!-- <div class="jumbotron">
+  <div class="jumbotron">
     <div class="container-fluid">
-      <h2 class="text-center">Severe Weather Data visualization 2010-2016</h2>
-      <p class="text-center">A quick look at 6 years of weather data</p>
-    </div>
-  </div> -->
-  <!-- The div where we will inject our map -->
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1">
-            <select name="yearDropDown" id="yearDropDown" onchange="getYearCharts(this.value)">
-                <option value="2010">2010</option>
-                <option value="2011">2011</option>
-                <option value="2012">2012</option>
-                <option value="2013">2013</option>
-                <option value="2014">2014</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-            </select>
-        </div>
+      <h3 class="text-center">Severe Weather Data visualization 2010-2016</h2>
+      <p class="text-center">An analysis of severe weather events over the course of 6 years.  Hail storms, tornados, and severe wind events that occured in the United States of America.</p>
+      <br>
+      <br>
+      <div class="btn-toolbar" role="group" aria-label="...">
+          <button type="button" class="btn btn-default left-margin" value="2010" onclick="getYearCharts(this.value)">2010</button>
+          <button type="button" class="btn btn-default left-margin" value="2011" onclick="getYearCharts(this.value)">2011</button>
+          <button type="button" class="btn btn-default left-margin" value="2012" onclick="getYearCharts(this.value)">2012</button>
+          <button type="button" class="btn btn-default left-margin" value="2013" onclick="getYearCharts(this.value)">2013</button>
+          <button type="button" class="btn btn-default left-margin" value="2014" onclick="getYearCharts(this.value)">2014</button>
+          <button type="button" class="btn btn-default left-margin" value="2015" onclick="getYearCharts(this.value)">2015</button>
+          <button type="button" class="btn btn-default left-margin" value="2016" onclick="getYearCharts(this.value)">2016</button>
+      </div>
     </div>
   </div>
-      <div class="row">
-        <div class="col-md-8">
-            <div id="map"></div>
-        </div>
-    </div>
+  <!-- The div where we will inject our map -->
+    <div id="map"></div>
     <div class="row">
       <div class="col-md-6 ">
         <div id="bubble-chart"></div>
@@ -63,19 +59,8 @@
         <div id="stacked-bar-chart"></div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div id="torn-rose-chart"></div>
-      </div>
-      <div class="col-md-4">
-        <div id="hail-rose-chart"></div>
-      </div>
-      <div class="col-md-4">
-        <div id="wind-rose-chart"></div>
-      </div>
-    </div>
-  </div>
-</div>
+  
+ 
 
   <script src="{{ url_for('static', filename='js/logic.js') }}"></script>
 </body>
