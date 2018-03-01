@@ -1,22 +1,41 @@
-/* #map {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  height: 400px;
-  width: auto;
-  margin-bottom: 50px;
-  margin-top: 50px;
-} */
-.jumbotron{
-  margin-bottom: 0px;
-}
+ /* set map, body, and html to 100% of the screen size */
 
-body {
-  padding: 0;
-  margin: 0;
-}
 html, body, #map {
   height: 100%;
   width: 100%;
 }
-.left-margin{
-  margin-left: 25px;
+
+body {
+  font-family: Lobster;
+  margin-top: 50px;
+  padding: 0;
+  margin: 0;
+}
+body.left-margin {
+    margin-left: 25px;
+}
+
+a.link {
+  color: white;
+}
+
+.jumbotron {
+  text-align: center;
+  color: white;
+  position: relative;
+  background:	#0077be;
+  margin-bottom: 0px;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.button {
+	background-color :white;
+	color: #021b3d;
+	cursor: pointer;
+}
+
+.button:hover {
+    background-color: #76ffff;
+    color: black;
 }

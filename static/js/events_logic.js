@@ -17,7 +17,7 @@ var windURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/mast
   // 2. d3.json to get hail data
     // 3. d3.json to get wind data
       // 4. build map
-      
+
 // hard code the year      
 var year = 2010;
 
@@ -71,7 +71,7 @@ function buildMap(year, tornadoData, hailData, windData) {
         center: [
             37.09, -95.71
         ],
-        zoom: 4,
+        zoom: 4.25,
         layers: [streets, tornadoMarkers]
     });
   
