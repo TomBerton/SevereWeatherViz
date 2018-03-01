@@ -75,8 +75,6 @@ function getBubblePlotData(year){
       family: "Calibri Heading",
       size: 18},
       showlegend: true,
-      height: 400,
-      width: 600,
       xaxis: {
       title: "Months of the year",
       titlefont: {
