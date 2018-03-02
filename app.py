@@ -115,15 +115,42 @@ def getCoords(year):
 def getPieChart(year):
     total_loss_results = session.query(func.sum(Events.columns['loss'])).\
             filter(Events.columns['yr'] == year).first()
+    total_crop_loss_results = session.query(func.sum(Events.columns['closs'])).\
+            filter(Events.columns['yr'] == year).first()
     total_loss = round(total_loss_results[0],2)
+    total_crop_loss = round(total_crop_loss_results[0],2)
+    if year != "2016":
+        conv_total_loss = total_loss * 1000000
+        conv_total_crop = total_crop_loss * 1000000
+    else:
+        conv_total_loss = total_loss
+        conv_total_crop = total_crop_loss
+    complete_loss = conv_total_loss + conv_total_crop
+    print(total_crop_loss)
     print(total_loss)
+    print(complete_loss)
     results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
-             filter(Events.columns['yr'] == year).\
-             group_by(Events.columns['type'])
-            
+            filter(Events.columns['yr'] == year).\
+            group_by(Events.columns['type'])
+    
+    inj_results = session.query(Events.columns.type,func.sum(Events.columns.inj), func.sum(Events.columns.fat)).\
+            group_by(Events.columns.type)            
+    inj_list = []
+    for i in inj_results:
+        inj_dict = {}
+        inj_dict["Year"] = year
+        inj_dict["Type"] = i[0]
+        inj_dict["Injuries"] = i[1]
+        inj_dict["Fatalities"] = i[2]
+        inj_list.append(inj_dict)
+    print(inj_list)
     pie_chart_data = {
         'labels':[],
-        'values':[]
+        'values':[],
+        'total loss': conv_total_loss,
+        'total crop loss' : conv_total_crop,
+        'total complete loss' : complete_loss,
+        'injury data' : inj_list
     }
     for r in results:
         pie_chart_data['labels'].append(r[0])
