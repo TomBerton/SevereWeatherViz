@@ -5,6 +5,10 @@ html, body, #map {
   width: 100%;
 }
 
+.state-heading{
+  padding-top:10px;
+  padding-bottom:10px;
+}
 
 body {
   font-family: Lobster;
