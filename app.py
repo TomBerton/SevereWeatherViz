@@ -78,29 +78,48 @@ def getevent(query):
 
     return jsonify(empty_list)
 
-@app.route("/events/<event_type>/<year>")
-def getTornadoes(event_type,year):
-    #query for tornado count grouped by month
-    results = session.query(Events.columns.mo, func.count(Events.columns.type)).\
-        filter(
-            and_(
-                Events.columns.yr == year,
-                Events.columns.type == event_type
-            )
-        ).\
-        group_by(Events.columns.mo)
-    #empty list to hold the object
-    list_of_events = []
-    #iterate through to get month/count for each result
-    for a in results:
-        events_dict = {}
-        events_dict["Month"] = a[0]
-        events_dict["Count"] = a[1]
-        events_dict["Type"] = event_type.title()
-        list_of_events.append(events_dict)
+# @app.route("/events/<event_type>/<year>")
+# def getTornadoes(event_type,year):
+#     #query for tornado count grouped by month
+#     results = session.query(Events.columns.mo, func.count(Events.columns.type)).\
+#         filter(
+#             and_(
+#                 Events.columns.yr == year,
+#                 Events.columns.type == event_type
+#             )
+#         ).\
+#         group_by(Events.columns.mo)
+#     #empty list to hold the object
+#     list_of_events = []
+#     #iterate through to get month/count for each result
+#     for a in results:
+#         events_dict = {}
+#         events_dict["Month"] = a[0]
+#         events_dict["Count"] = a[1]
+#         events_dict["Type"] = event_type.title()
+#         list_of_events.append(events_dict)
 
-    return jsonify(list_of_events)
+#     return jsonify(list_of_events)
 
+@app.route("/piechart/<year>")
+def getPieChart(year):
+    total_loss_results = session.query(func.sum(Events.columns['loss'])).\
+            filter(Events.columns['yr'] == year).first()
+    total_loss = round(total_loss_results[0],2)
+    print(total_loss)
+    results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
+             filter(Events.columns['yr'] == year).\
+             group_by(Events.columns['type'])
+            
+    pie_chart_data = {
+        'labels':[],
+        'values':[]
+    }
+    for r in results:
+        pie_chart_data['labels'].append(r[0])
+        pie_chart_data['values'].append(round(r[1]))
+        
+    return jsonify(pie_chart_data)
 
 if __name__ == "__main__":
     app.run(debug = True)

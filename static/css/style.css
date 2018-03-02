@@ -5,6 +5,7 @@ html, body, #map {
   width: 100%;
 }
 
+
 body {
   font-family: Lobster;
   margin-top: 50px;
@@ -18,7 +19,9 @@ body.left-margin {
 a.link {
   color: white;
 }
-
+.white-font{
+  color:white;
+}
 .jumbotron {
   text-align: center;
   color: white;

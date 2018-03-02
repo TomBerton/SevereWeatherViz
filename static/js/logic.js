@@ -200,23 +200,24 @@ Plotly.newPlot('pie-chart', data);
 //function to render charts based on year
 function getYearCharts(year){
 
-  
-    // updatePieChart(data);
-
-    renderBubble(year);
-    getBubblePlotData(year);
-    renderStackedBar(year);
-    // code to destroy and replace the map
+    // // updatePieChart(data);
     rerenderMapDiv();
-    getMap(year);
+   getMap(year);
+//renderBubble(year);
+//    getBubblePlotData(year);
+//    renderStackedBar(year);
+    // code to destroy and replace the map
+    
+    
 }
 
 function rerenderMapDiv(){
-    map.remove();
-    var newMapDiv = document.createElement("div");
-    newMapDiv.id = "map";
-    var firstChild = document.body.firstChild;
-    document.body.insertBefore(newMapDiv, firstChild);
+    // map.remove();
+
+    // var newMapDiv = document.createElement("div");
+    // newMapDiv.id = "map";
+    // var firstChild = document.body.firstChild;
+    // document.body.insertBefore(newMapDiv, firstChild);
 }
 // make a function that renders a bubble chart based on the given data value
 function renderBubble(year){
@@ -287,8 +288,6 @@ function getBubblePlotData(year){
             family: "Calibri Heading",
             size: 18},
             showlegend: true,
-            height: 400,
-            width: 600,
             xaxis: {
             title: "Months of the year",
             titlefont: {

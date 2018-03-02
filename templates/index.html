@@ -39,7 +39,7 @@
           </p>
           <br>
           <br>
-          <div class="btn-toolbar" role="group" aria-label="...">
+          <div class="btn-toolbar " role="group" aria-label="...">
               <button type="button" class="btn button left-margin" value="2010" onclick="getYearCharts(this.value)">2010</button>
               <button type="button" class="btn button left-margin" value="2011" onclick="getYearCharts(this.value)">2011</button>
               <button type="button" class="btn button left-margin" value="2012" onclick="getYearCharts(this.value)">2012</button>
@@ -48,15 +48,29 @@
               <button type="button" class="btn button left-margin" value="2015" onclick="getYearCharts(this.value)">2015</button>
               <button type="button" class="btn button left-margin" value="2016" onclick="getYearCharts(this.value)">2016</button>
           </div>
+          <!-- <ul class="nav navbar-nav navbar-right">
+            <li><a href="#map" class="white-font">US Map</a></li>
+            <li><a href="#bubble-chart" class="white-font">Bubble Chart</a></li>
+            <li><a href="#pie-chart" class="white-font">Pie Chart</a></li>
+            <li><a href="#stacked-bar-chart" class="white-font">Stacked Bar Chart</a></li>
+          </ul> -->
+          <div class="btn-toolbar" role="group" aria-label="...">
+            <button type="button" class="btn button pull-right"><a href="#bubble-chart">Bubble Chart</a></button>
+            <button type="button" class="btn button pull-right"><a href="#pie-chart">Pie Chart</a></button>
+            <button type="button" class="btn button pull-right"><a href="#stacked-bar-chart">Stacked Bar Chart</a></button>
+            <button type="button" class="btn button pull-right"><a href="#map">US Map</a></button>
+          </div>
         </div>
       </div>
   <!-- The div where we will inject our map -->
     <div id="map"></div>
     <div class="row">
-      <div class="col-md-6 ">
+      <div class="col-md-12 ">
         <div id="bubble-chart"></div>
       </div>
-      <div class="col-md-4">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <div id="pie-chart"></div>
       </div>
     </div>
@@ -68,7 +82,7 @@
   
  
     <!-- <script src="{{ url_for('static', filename='js/logic.js') }}"></script> -->
-    <script type="text/javascript" src="static/js/events_logic.js"></script>
+    <script type="text/javascript" src="static/js/logic.js"></script>
 
 </body>
 </html>
