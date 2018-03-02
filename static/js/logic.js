@@ -305,6 +305,9 @@ function createPieChart(year){
         var data = [{
             values: [hailInj, tornInj, windInj],
             labels: ["Hail Injuries", "Tornado Injuries", "Wind Injuries"],
+            marker: {
+                colors: ["skyblue", "orange","red"]
+            },
             domain : {
                 x:[0,.48]
             },
@@ -317,6 +320,9 @@ function createPieChart(year){
         },{
             values: [hailCost, tornCost, windCost],
             labels: ["Hail Loss", "Tornado Loss", "Wind Loss"],
+            marker: {
+                colors: ["skyblue", "orange","red"]
+            },
             text: "$Loss",
             texposition: "inside",
             domain: {x: [.52, 1]},
