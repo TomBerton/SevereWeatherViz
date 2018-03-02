@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Testing Map</title>
+  <title>US Severe Storms 2010-2016</title>
   <!-- Jquery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Latest compiled and minified CSS -->
@@ -35,9 +35,11 @@
     <div class="jumbotron">
         <div class="container-fluid text-center">
           <h2>NOAA Severe Weather Data 2010-2016</h2>
-          <p>This is a visual analysis of hail storms, tornados, and severe wind events that occured in the United States of America.
-            Data was retrieved from Severe Weather data from the <u><a class="link"  href="http://www.spc.noaa.gov/wcm/#data" target="_blank">NOAA Storm Prediction Center</a></u>
-            converted to a Geojson file or SQLAlchemy db. To plot the data, we used Leaflet, D3 and Plotly and deploy the website in Heroku using Flask and MongoDB. 
+          <p>This is a visual analysis of hail storms, tornados, and severe wind events that occured in the United States of America from 2010-2016.
+            The data was retrieved from the <u><a class="link"  href="http://www.spc.noaa.gov/wcm/#data" target="_blank">NOAA Storm Prediction Center.</a></u>
+            Pandas/Jupyter notebook were used to read and join all CSV files. The combined files were converted to a SQLite database using SQLAlchemy. SQL queries 
+            in Pandas were used for plotting the data. A Flask API was used to retrieve the data from the SQLite database and plotted using Leaflet, D3 
+            and Plotly. The website was deployed onto Heroku.
           </p>
           <br>
           <br>

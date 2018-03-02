@@ -100,30 +100,7 @@ def getevent(query):
 
     return jsonify(empty_list)
 
-# @app.route("/events/<event_type>/<year>")
-# def getTornadoes(event_type,year):
-#     #query for tornado count grouped by month
-#     results = session.query(Events.columns.mo, func.count(Events.columns.type)).\
-#         filter(
-#             and_(
-#                 Events.columns.yr == year,
-#                 Events.columns.type == event_type
-#             )
-#         ).\
-#         group_by(Events.columns.mo)
-#     #empty list to hold the object
-#     list_of_events = []
-#     #iterate through to get month/count for each result
-#     for a in results:
-#         events_dict = {}
-#         events_dict["Month"] = a[0]
-#         events_dict["Count"] = a[1]
-#         events_dict["Type"] = event_type.title()
-#         list_of_events.append(events_dict)
 
-#     return jsonify(list_of_events)
-
-<<<<<<< HEAD
 @app.route("/coords/<year>")
 def getCoords(year):
     results = session.query(Events.columns.yr, Events.columns.st, Events.columns.slat, Events.columns.slon, Events.columns.type, Events.columns.mag, Events.columns.date_time).\
@@ -134,13 +111,13 @@ def getCoords(year):
     
     return jsonify(empty_coords)
 
-=======
->>>>>>> origin/BubbleChart
+
+
 @app.route("/piechart/<year>")
 def getPieChart(year):
     total_loss_results = session.query(func.sum(Events.columns['loss'])).\
             filter(Events.columns['yr'] == year).first()
-<<<<<<< HEAD
+
     total_crop_loss_results = session.query(func.sum(Events.columns['closs'])).\
             filter(Events.columns['yr'] == year).first()
     total_loss = round(total_loss_results[0],2)
@@ -177,18 +154,8 @@ def getPieChart(year):
         'total_crop_loss' : conv_total_crop,
         'total_complete_loss' : complete_loss,
         'injury_data' : inj_list
-=======
-    total_loss = round(total_loss_results[0],2)
-    print(total_loss)
-    results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
-             filter(Events.columns['yr'] == year).\
-             group_by(Events.columns['type'])
-            
-    pie_chart_data = {
-        'labels':[],
-        'values':[]
->>>>>>> origin/BubbleChart
     }
+    
     for r in results:
         pie_chart_data['labels'].append(r[0])
         pie_chart_data['values'].append(round(r[1]))
