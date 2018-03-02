@@ -101,6 +101,16 @@ def getevent(query):
 
 #     return jsonify(list_of_events)
 
+@app.route("/coords/<year>")
+def getCoords(year):
+    results = session.query(Events.columns.yr, Events.columns.st, Events.columns.slat, Events.columns.slon, Events.columns.type, Events.columns.mag, Events.columns.date_time).\
+    filter(Events.columns.yr == year)
+    empty_coords = []
+    for result in results:
+        empty_coords.append(result)
+    
+    return jsonify(empty_coords)
+
 @app.route("/piechart/<year>")
 def getPieChart(year):
     total_loss_results = session.query(func.sum(Events.columns['loss'])).\

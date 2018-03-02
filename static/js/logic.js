@@ -96,97 +96,184 @@ function getBubblePlotData(year){
   }
  
 
-function getMap(year) {
-  d3.json(tornadoURL, function(tornadoData) {
-    //   console.log("tornado_url", tornadoData);
+// function getMap(year) {
+//   d3.json(tornadoURL, function(tornadoData) {
+//     //   console.log("tornado_url", tornadoData);
     
-      d3.json(hailURL, function(hailData) {
-        // console.log("hail_url", tornadoData);
+//       d3.json(hailURL, function(hailData) {
+//         // console.log("hail_url", tornadoData);
     
-        d3.json(windURL, function(windData) {
-            // console.log("wind_url", tornadoData);
+//         d3.json(windURL, function(windData) {
+//             // console.log("wind_url", tornadoData);
     
-          buildMap(year, tornadoData, hailData, windData);
-        });
-      });
-    });
-}
+//           buildMap(year, tornadoData, hailData, windData);
+//         });
+//       });
+//     });
+// }
 
 
-function buildMap(year, tornadoData, hailData, windData) {
+// function buildMap(year, tornadoData, hailData, windData) {
 
-  // build tornado layer
+//   // build tornado layer
 
-  var tornadoMarkers = buildLayer(year, tornadoData, "F-scale: ");
+//   var tornadoMarkers = buildLayer(year, tornadoData, "F-scale: ");
 
-  // build hail layer
-  var hailMarkers = buildLayer(year, hailData, "Hail size: ");
+//   // build hail layer
+//   var hailMarkers = buildLayer(year, hailData, "Hail size: ");
 
-  // build windlayer
-  var windMarkers = buildLayer(year, windData, "KPH: ");
+//   // build windlayer
+//   var windMarkers = buildLayer(year, windData, "KPH: ");
 
-  // add control
+//   // add control
 
 
     
-    var baseMaps = {
-        "Streets": streets,
-        "Light": light
-    };
+var baseMaps = {
+    "Streets": streets,
+    "Light": light
+};
     
-    var overlayMaps = {
-        "Tornados": tornadoMarkers,
-        "Hail": hailMarkers,
-        "Wind": windMarkers
-    };
+//     var overlayMaps = {
+//         "Tornados": tornadoMarkers,
+//         "Hail": hailMarkers,
+//         "Wind": windMarkers
+//     };
 
-    // add map
-    var myMap = L.map("map", {
-        center: [
-            37.09, -95.71
-        ],
-        zoomSnap: .25,
-        zoomDelta: .25,
-        zoom: 4.75,
-        scrollWheelZoom: false,
-        layers: [streets, tornadoMarkers]
-    });
+//     // add map
+    // var myMap = L.map("map", {
+    //     center: [
+    //         37.09, -95.71
+    //     ],
+    //     zoomSnap: .25,
+    //     zoomDelta: .25,
+    //     zoom: 4.75,
+    //     scrollWheelZoom: false,
+    //     layers: [streets, tornadoMarkers]
+    // });
   
     
-    L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+//     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
-    // createMap(tornadoMarkers);
+//     // createMap(tornadoMarkers);
 
-}
+// }
 
-function buildLayer(year, geoJson, title) {
-  var markers = L.markerClusterGroup();
-    var features = geoJson.features;
-    // Loop through our data...
-    for (var i = 0; i < features.length; i++) {
-    //   console.log("feature", features);
-      var coords = features[i].geometry;
-      var description = features[i].properties
-      var event = features[i].properties;
-      // If the data has lat an lon add them to the map. 
-      // get the year 
-      if (event.yr === year) {
-        if (coords) {
+// function buildLayer(year, geoJson, title) {
+//   var markers = L.markerClusterGroup();
+//     var features = geoJson.features;
+//     // Loop through our data...
+//     for (var i = 0; i < features.length; i++) {
+//     //   console.log("feature", features);
+//       var coords = features[i].geometry;
+//       var description = features[i].properties
+//       var event = features[i].properties;
+//       // If the data has lat an lon add them to the map. 
+//       // get the year 
+//       if (event.yr === year) {
+//         if (coords) {
 
-            // Add a new marker to the cluster group and bind a pop-up
-            markers.addLayer(L.marker([coords.coordinates[1], coords.coordinates[0]])
-              .bindPopup("<h4>"+ title +": " + description.mag + "<br/>Location: " 
-                  + description.st + "</h4><hr><p>Date : Time: " + description.date_time + "</p>"));
-          }
-      }
+//             // Add a new marker to the cluster group and bind a pop-up
+//             markers.addLayer(L.marker([coords.coordinates[1], coords.coordinates[0]])
+//               .bindPopup("<h4>"+ title +": " + description.mag + "<br/>Location: " 
+//                   + description.st + "</h4><hr><p>Date : Time: " + description.date_time + "</p>"));
+//           }
+//       }
       
 
-    }
+//     }
 
-    // Add our marker cluster layer to the map
-    // myMap.addLayer(markers);
-    return markers;
+//     // Add our marker cluster layer to the map
+//     // myMap.addLayer(markers);
+//     return markers;
+// }
+// var layers = {
+//     torn: new L.markerClusterGroup(),
+//     hail: new L.markerClusterGroup(),
+//     wind: new L.markerClusterGroup()
+// };
+
+var myMap = L.map("map", {
+center: [
+    37.09, -95.71
+],
+zoomSnap: .25,
+zoomDelta: .25,
+zoom: 4.75,
+scrollWheelZoom: false,
+maxZoom: 10,
+// layers: [
+//     layers.torn,
+//     layers.hail,
+//     layers.wind
+// ]
+});
+
+
+streets.addTo(myMap);
+// var overlays = {
+//     "Tornados" : layers.torn,
+//     "Hail" : layers.hail,
+//     "Wind" : layers.wind
+// }
+
+// L.control.layers(baseMaps, overlays).addTo(map);
+
+
+function buildMarkers(year){
+    var url = "/coords/" + year;
+    d3.json(url, function(error, response){
+        if(error) console.warn(error);
+        // console.log(response);
+        for (var i = 0; i < response.length; i++){
+            var location = response[i];
+            if (location[4] == "torn"){
+                var eventType = "Tornado";
+                tornMarker = L.marker([location[2], location[3]]);
+                tornMarker.bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>");
+                tornMarker.addTo(tornMarkers);
+                // tornMarkers.addLayer(L.marker([location[2], location[3]])
+                // .bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>"));
+            } else if (location[4] == "hail"){
+                var eventType = "Hail";
+                hailMarker = L.marker([location[2], location[3]]);
+                hailMarker.bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>");
+                hailMarker.addTo(hailMarkers);
+                // hailMarkers.addLayer(L.marker([location[2], location[3]])
+                // .bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>"));
+            } else{
+                var eventType = "Wind"
+                windMarker = L.marker([location[2], location[3]]);
+                windMarker.bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>");
+                windMarker.addTo(windMarkers);
+                // windMarkers.addLayer(L.marker([location[2], location[3]])
+                // .bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>"));
+            }
+            
+            
+        }
+    })
+    
+
+    tornMarkers.addTo(myMap);
+    windMarkers.addTo(myMap);
+    hailMarkers.addTo(myMap);
+    // myMap.addLayer(tornMarkers);
+    // myMap.addLayer(hailMarkers);
+    // myMap.addLayer(windMarkers);
 }
+
+//create marker cluster group
+var mcg = L.markerClusterGroup(),
+    tornMarkers = L.featureGroup.subGroup(mcg),
+    hailMarkers = L.featureGroup.subGroup(mcg),
+    windMarkers = L.featureGroup.subGroup(mcg),
+    control = L.control.layers(baseMaps,null, {collapsed : false})
+mcg.addTo(myMap);
+control.addOverlay(tornMarkers, "Tornados");
+control.addOverlay(hailMarkers, "Hail");
+control.addOverlay(windMarkers, "Wind");
+control.addTo(myMap);
 
 //place holder pie chart 
 var data = [{
@@ -199,25 +286,19 @@ Plotly.newPlot('pie-chart', data);
 
 //function to render charts based on year
 function getYearCharts(year){
-
+     
+    tornMarkers.clearLayers();
+    windMarkers.clearLayers();
+    hailMarkers.clearLayers();
+    buildMarkers(year);
     // // updatePieChart(data);
-    rerenderMapDiv();
-   getMap(year);
+//    getMap(year);
 //renderBubble(year);
 //    getBubblePlotData(year);
 //    renderStackedBar(year);
     // code to destroy and replace the map
     
     
-}
-
-function rerenderMapDiv(){
-    // map.remove();
-
-    // var newMapDiv = document.createElement("div");
-    // newMapDiv.id = "map";
-    // var firstChild = document.body.firstChild;
-    // document.body.insertBefore(newMapDiv, firstChild);
 }
 // make a function that renders a bubble chart based on the given data value
 function renderBubble(year){
@@ -385,7 +466,8 @@ function renderStackedBar(year){
 function init(){
 getBubblePlotData(2010);
 renderStackedBar(2010);
-getMap(2010);
+// getMap(2010);
+buildMarkers(2010);
 }
 
 init();
