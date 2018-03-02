@@ -9,6 +9,8 @@ from sqlalchemy import func
 from sqlalchemy import create_engine,MetaData,Table,Column
 import BubbleUtilities
 
+import pandas as pd
+
 
 from flask import (
     Flask,
@@ -34,6 +36,26 @@ session = Session(bind=engine)
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
+#home route
+@app.route("/statewide")
+def stateshome():
+    return render_template("states.html")
+
+@app.route("/states")
+def getStates():
+    states_df = pd.read_csv('datasets/state_wise_data.csv')
+    return jsonify(states_df.to_dict(orient='records'))
+
+@app.route("/state/<state_code>")
+def getTypeEventCountByState(state_code):
+    results = session.query(Events.columns['type'],func.count(Events.columns['loss'])).\
+             filter(Events.columns['st'] == state_code).\
+             group_by(Events.columns['type']).\
+             order_by(Events.columns['st'] ).all()
+
+    return jsonify(results)
 
 
 @app.route("/bubble/<selected_year>")
@@ -78,29 +100,48 @@ def getevent(query):
 
     return jsonify(empty_list)
 
-@app.route("/events/<event_type>/<year>")
-def getTornadoes(event_type,year):
-    #query for tornado count grouped by month
-    results = session.query(Events.columns.mo, func.count(Events.columns.type)).\
-        filter(
-            and_(
-                Events.columns.yr == year,
-                Events.columns.type == event_type
-            )
-        ).\
-        group_by(Events.columns.mo)
-    #empty list to hold the object
-    list_of_events = []
-    #iterate through to get month/count for each result
-    for a in results:
-        events_dict = {}
-        events_dict["Month"] = a[0]
-        events_dict["Count"] = a[1]
-        events_dict["Type"] = event_type.title()
-        list_of_events.append(events_dict)
+# @app.route("/events/<event_type>/<year>")
+# def getTornadoes(event_type,year):
+#     #query for tornado count grouped by month
+#     results = session.query(Events.columns.mo, func.count(Events.columns.type)).\
+#         filter(
+#             and_(
+#                 Events.columns.yr == year,
+#                 Events.columns.type == event_type
+#             )
+#         ).\
+#         group_by(Events.columns.mo)
+#     #empty list to hold the object
+#     list_of_events = []
+#     #iterate through to get month/count for each result
+#     for a in results:
+#         events_dict = {}
+#         events_dict["Month"] = a[0]
+#         events_dict["Count"] = a[1]
+#         events_dict["Type"] = event_type.title()
+#         list_of_events.append(events_dict)
 
-    return jsonify(list_of_events)
+#     return jsonify(list_of_events)
 
+@app.route("/piechart/<year>")
+def getPieChart(year):
+    total_loss_results = session.query(func.sum(Events.columns['loss'])).\
+            filter(Events.columns['yr'] == year).first()
+    total_loss = round(total_loss_results[0],2)
+    print(total_loss)
+    results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
+             filter(Events.columns['yr'] == year).\
+             group_by(Events.columns['type'])
+            
+    pie_chart_data = {
+        'labels':[],
+        'values':[]
+    }
+    for r in results:
+        pie_chart_data['labels'].append(r[0])
+        pie_chart_data['values'].append(round(r[1]))
+        
+    return jsonify(pie_chart_data)
 
 if __name__ == "__main__":
     app.run(debug = True)
