@@ -155,8 +155,7 @@ def getPieChart(year):
         'total_complete_loss' : complete_loss,
         'injury_data' : inj_list
     }
-
-    }
+    
     for r in results:
         pie_chart_data['labels'].append(r[0])
         pie_chart_data['values'].append(round(r[1]))
