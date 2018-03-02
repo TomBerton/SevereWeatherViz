@@ -100,29 +100,6 @@ def getevent(query):
 
     return jsonify(empty_list)
 
-# @app.route("/events/<event_type>/<year>")
-# def getTornadoes(event_type,year):
-#     #query for tornado count grouped by month
-#     results = session.query(Events.columns.mo, func.count(Events.columns.type)).\
-#         filter(
-#             and_(
-#                 Events.columns.yr == year,
-#                 Events.columns.type == event_type
-#             )
-#         ).\
-#         group_by(Events.columns.mo)
-#     #empty list to hold the object
-#     list_of_events = []
-#     #iterate through to get month/count for each result
-#     for a in results:
-#         events_dict = {}
-#         events_dict["Month"] = a[0]
-#         events_dict["Count"] = a[1]
-#         events_dict["Type"] = event_type.title()
-#         list_of_events.append(events_dict)
-
-#     return jsonify(list_of_events)
-
 
 @app.route("/coords/<year>")
 def getCoords(year):
@@ -178,15 +155,6 @@ def getPieChart(year):
         'total_complete_loss' : complete_loss,
         'injury_data' : inj_list
     }
-    total_loss = round(total_loss_results[0],2)
-    print(total_loss)
-    results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
-             filter(Events.columns['yr'] == year).\
-             group_by(Events.columns['type'])
-            
-    pie_chart_data = {
-        'labels':[],
-        'values':[]
 
     }
     for r in results:
