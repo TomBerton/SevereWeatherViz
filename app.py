@@ -177,7 +177,7 @@ def getPieChart(year):
         'total_crop_loss' : conv_total_crop,
         'total_complete_loss' : complete_loss,
         'injury_data' : inj_list
-
+    }
     total_loss = round(total_loss_results[0],2)
     print(total_loss)
     results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
