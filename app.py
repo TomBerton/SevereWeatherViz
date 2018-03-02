@@ -147,10 +147,10 @@ def getPieChart(year):
     pie_chart_data = {
         'labels':[],
         'values':[],
-        'total loss': conv_total_loss,
-        'total crop loss' : conv_total_crop,
-        'total complete loss' : complete_loss,
-        'injury data' : inj_list
+        'total_loss': conv_total_loss,
+        'total_crop_loss' : conv_total_crop,
+        'total_complete_loss' : complete_loss,
+        'injury_data' : inj_list
     }
     for r in results:
         pie_chart_data['labels'].append(r[0])

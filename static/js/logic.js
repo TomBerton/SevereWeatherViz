@@ -275,16 +275,7 @@ control.addOverlay(hailMarkers, "Hail");
 control.addOverlay(windMarkers, "Wind");
 control.addTo(myMap);
 
-//place holder pie chart 
-var data = [{
-  values: [1,2,3,4,5],
-  labels: ['1','2','3','4','5'],
-  type: 'pie'
-}];
 
-Plotly.newPlot('pie-chart', data);
-
-//function to render charts based on year
 function getYearCharts(year){
      
     tornMarkers.clearLayers();
@@ -293,21 +284,79 @@ function getYearCharts(year){
     buildMarkers(year);
     // // updatePieChart(data);
 //    getMap(year);
-//renderBubble(year);
-//    getBubblePlotData(year);
-//    renderStackedBar(year);
-    // code to destroy and replace the map
-    
+    renderBubble(year);
+    getBubblePlotData(year);
+    renderStackedBar(year);
+    createPieChart(year)
     
 }
 // make a function that renders a bubble chart based on the given data value
+function createPieChart(year){
+    var url = "/piechart/" + year
+    d3.json(url, function(error,response){
+        if(error) console.warn(error);
+        console.log(response);
+        var hailInj = response.injury_data[0].Injuries + response.injury_data[0].Fatalities;
+        var tornInj = response.injury_data[1].Injuries + response.injury_data[1].Fatalities;
+        var windInj = response.injury_data[2].Injuries + response.injury_data[2].Fatalities;
+        var hailCost = (response.total_complete_loss * response.values[0]) / 100;
+        var tornCost = (response.total_complete_loss * response.values[1]) / 100;
+        var windCost = (response.total_complete_loss * response.values[2]) / 100;
+        var data = [{
+            values: [hailInj, tornInj, windInj],
+            labels: ["Hail Injuries", "Tornado Injuries", "Wind Injuries"],
+            domain : {
+                x:[0,.48]
+            },
+            text: "Injuries",
+            textposition: "inside",
+            name: `Total Injuries and Fatalities in ${year}`,
+            hoverinfo: `label + percent + name`,
+            hole: .5,
+            type: "pie"
+        },{
+            values: [hailCost, tornCost, windCost],
+            labels: ["Hail Loss", "Tornado Loss", "Wind Loss"],
+            text: "$Loss",
+            texposition: "inside",
+            domain: {x: [.52, 1]},
+            name: `Total Monetary Loss in ${year}`,
+            hoverinfo: "label + percent + name",
+            hole: .5,
+            type: "pie"
+        }];
+        var layout = {
+            title: `Total Injuries and Monetary Loss in ${year}`,
+            annotations: [
+            {
+            font: {
+              size: 10
+            },
+            showarrow: false,
+            text: 'Injuries',
+            x: 0.17,
+            y: 0.5
+            },
+            {
+            font: {
+              size: 10
+            },
+            showarrow: false,
+            text: 'Monetary',
+            x: 0.82,
+            y: 0.5
+          }
+        ],
+        height: 600,
+        width: 800,
+      };
+      Plotly.newPlot("pie-chart",data,layout)
+    })
+
+}
 function renderBubble(year){
   getBubblePlotData(year);
 }
-
-function updatePieChart(newdata){
-  Plotly.restyle("pie-chart", "values", [newdata]);
-};
 
 function getBubblePlotData(year){
   
@@ -466,8 +515,8 @@ function renderStackedBar(year){
 function init(){
 getBubblePlotData(2010);
 renderStackedBar(2010);
-// getMap(2010);
 buildMarkers(2010);
+createPieChart(2010);
 }
 
 init();
