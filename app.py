@@ -9,6 +9,8 @@ from sqlalchemy import func
 from sqlalchemy import create_engine,MetaData,Table,Column
 import BubbleUtilities
 
+import pandas as pd
+
 
 from flask import (
     Flask,
@@ -34,6 +36,26 @@ session = Session(bind=engine)
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
+#home route
+@app.route("/statewide")
+def stateshome():
+    return render_template("states.html")
+
+@app.route("/states")
+def getStates():
+    states_df = pd.read_csv('datasets/state_wise_data.csv')
+    return jsonify(states_df.to_dict(orient='records'))
+
+@app.route("/state/<state_code>")
+def getTypeEventCountByState(state_code):
+    results = session.query(Events.columns['type'],func.count(Events.columns['loss'])).\
+             filter(Events.columns['st'] == state_code).\
+             group_by(Events.columns['type']).\
+             order_by(Events.columns['st'] ).all()
+
+    return jsonify(results)
 
 
 @app.route("/bubble/<selected_year>")
@@ -101,6 +123,7 @@ def getevent(query):
 
 #     return jsonify(list_of_events)
 
+<<<<<<< HEAD
 @app.route("/coords/<year>")
 def getCoords(year):
     results = session.query(Events.columns.yr, Events.columns.st, Events.columns.slat, Events.columns.slon, Events.columns.type, Events.columns.mag, Events.columns.date_time).\
@@ -111,10 +134,13 @@ def getCoords(year):
     
     return jsonify(empty_coords)
 
+=======
+>>>>>>> origin/BubbleChart
 @app.route("/piechart/<year>")
 def getPieChart(year):
     total_loss_results = session.query(func.sum(Events.columns['loss'])).\
             filter(Events.columns['yr'] == year).first()
+<<<<<<< HEAD
     total_crop_loss_results = session.query(func.sum(Events.columns['closs'])).\
             filter(Events.columns['yr'] == year).first()
     total_loss = round(total_loss_results[0],2)
@@ -151,6 +177,17 @@ def getPieChart(year):
         'total_crop_loss' : conv_total_crop,
         'total_complete_loss' : complete_loss,
         'injury_data' : inj_list
+=======
+    total_loss = round(total_loss_results[0],2)
+    print(total_loss)
+    results = session.query(Events.columns['type'],(func.sum(Events.columns['loss'])/total_loss)*100).\
+             filter(Events.columns['yr'] == year).\
+             group_by(Events.columns['type'])
+            
+    pie_chart_data = {
+        'labels':[],
+        'values':[]
+>>>>>>> origin/BubbleChart
     }
     for r in results:
         pie_chart_data['labels'].append(r[0])

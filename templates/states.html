@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    
+
+</head>
+
+<body>
+        <div class="jumbotron state-heading">
+                <div class="container-fluid text-center">
+                  <h2>Statewide Severe Weather Data <br> (2010-2016)</h2>
+                  <p> Below bubble chart visualizes features like frequency, total damage, fatalities of severe weather events 
+                      by the States of USA <br>
+                      <strong>Bigger the bubble shows that higher the occurance or damage or fatalities in that state. </strong>
+                  </p>
+                
+                
+
+                <div class="row">
+
+                    <div class="col-md-8">
+                            <div class="btn-toolbar" role="group" aria-label="...">
+                                    <button type="button" class="btn button btn-outline-dark pull-right" onclick="actOnClick('num_events')">Frequency of Events</button>
+                                    <button type="button" class="btn button btn-outline-dark pull-right" onclick="actOnClick('tot_loss')">Property Loss</button>
+                                    <button type="button" class="btn button btn-outline-dark pull-right" onclick="actOnClick('fatalities')">Fatalities</button>
+                                </div>
+                    </div>
+                    <div class="col-md-4">
+                            <div class="weather_type_data">
+                                    
+                            </div>
+                    </div>
+                        
+                        
+    
+                </div>
+
+                </div>
+              </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row container">
+                    <div class="chart-title">
+
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="chart">
+                                
+                        </div>
+                </div>
+                
+            </div>
+            <div class="col-md-4 center-block bg-light text-center">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="selected_seal">
+                                        
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="selected_seal_data">
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+
+                
+
+            </div>
+    </div>
+
+
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bubble_d3.js') }}"></script>
+</body>
+
+</html>
