@@ -42,7 +42,7 @@ This project is to analyze severe weather in the United States between 2010-2016
  </p>
  <h5>Pie chart with metadate on hover. </h5>
      <p align="center"> 
-  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img5.png" width="600"
+  <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/img5.png" width="400"
  </p>
   <h5>Bubble chart with metadate on hover.</h5>
  <p align="center"> 
@@ -63,31 +63,31 @@ This project is to analyze severe weather in the United States between 2010-2016
  <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/Jumbotron.png" width="600"/>
  </p>
- ------
+------
  
  US map using Leaflet to show each severe weather event. 
  <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/US_map.png" width="600"/>
  </p>
- ------
+------
  
  Pie chart data showing total inuries and monetary loss for the selected year.
  <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/Pie_chart.png" width="600"/>
  </p>
- ------
+------
  
  Bubble chart showing severe weather events for the months by size of the selected year. 
  <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/Bubble_chart.png" width="600"/>
  </p>
- ------
+------
  
  Stacked bar chart showing the severe weather events for the months of the selected year.
   <p align="center"> 
   <img src="https://github.com/TomBerton/SevereWeatherViz/blob/master/images/Bar_chart.png" width="600"/>
  </p>
- ------
+------
  
  Another bubble chart showing the frequency, total damage, fatalities of severe weather events for each. The larger the state's seal, the more frequent storms, total damage or fatalities.  
    <p align="center"> 
