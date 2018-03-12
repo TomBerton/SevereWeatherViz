@@ -1,4 +1,33 @@
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+TimeTracker.xlsx
+LessonPlan.md
+Generators
+
+# nbgrader database file
+gradebook.db
+
+# .DS_Store
 .DS_Store
+
+# Idea
+.idea
+
+# Editor
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
