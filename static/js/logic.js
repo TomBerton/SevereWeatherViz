@@ -2,10 +2,10 @@ var first = "Y";
 // Mapbox API
 var $mapContainer = document.getElementById("map-container");
 var streets = L.tileLayer("https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=" +
-    "pk.eyJ1IjoidGJlcnRvbiIsImEiOiJjamRoanlkZXIwenp6MnFuOWVsbGo2cWhtIn0.zX40X0x50dpaN96rKQKarw");
+    "");
 
 var light = L.tileLayer("http://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token="+
-    "pk.eyJ1IjoidGJlcnRvbiIsImEiOiJjamRoanlkZXIwenp6MnFuOWVsbGo2cWhtIn0.zX40X0x50dpaN96rKQKarw");
+    "");
 
 //  query URL
 var tornadoURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/master/json_data/tornado.json";
@@ -14,9 +14,9 @@ var windURL = "https://raw.githubusercontent.com/TomBerton/SevereWeatherViz/mast
 
 
 function getBubblePlotData(year){
-  
+
     var data = [];
-    
+
     Plotly.d3.json(`/bubble/${year}`,function(bubble_chart_data){
     var tornado_data = {
             x: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
@@ -31,7 +31,7 @@ function getBubblePlotData(year){
             },
             name: 'tornado'
         };
-        
+
         var hail_data = {
             x: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             y: bubble_chart_data['hail']['y'],
@@ -46,7 +46,7 @@ function getBubblePlotData(year){
             },
             name: 'hail'
         };
-        
+
         var wind_data = {
             x: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             y: bubble_chart_data['wind']['y'],
@@ -61,14 +61,14 @@ function getBubblePlotData(year){
             },
             name: 'Wind'
         };
-        
+
         data.push(tornado_data, hail_data, wind_data);
         // console.log(data);
-     
+
         // Plotly.restyle("bubble-chart", data, layout);
     });
-  
-       
+
+
     var layout = {
       title: 'Severe weather incidents around months',
       titlefont: {
@@ -84,28 +84,28 @@ function getBubblePlotData(year){
       title: "Scaled Magnitude",
       titlefont: {
           family: "Calibri Heading",
-          size: 14}}            
+          size: 14}}
   };
-     
-  
+
+
   bubble_plot_data =  {
   'data':data,
   'layout':layout
   }
     return bubble_plot_data;
   }
- 
+
 
 // function getMap(year) {
 //   d3.json(tornadoURL, function(tornadoData) {
 //     //   console.log("tornado_url", tornadoData);
-    
+
 //       d3.json(hailURL, function(hailData) {
 //         // console.log("hail_url", tornadoData);
-    
+
 //         d3.json(windURL, function(windData) {
 //             // console.log("wind_url", tornadoData);
-    
+
 //           buildMap(year, tornadoData, hailData, windData);
 //         });
 //       });
@@ -128,12 +128,12 @@ function getBubblePlotData(year){
 //   // add control
 
 
-    
+
 var baseMaps = {
     "Streets": streets,
     "Light": light
 };
-    
+
 //     var overlayMaps = {
 //         "Tornados": tornadoMarkers,
 //         "Hail": hailMarkers,
@@ -151,8 +151,8 @@ var baseMaps = {
     //     scrollWheelZoom: false,
     //     layers: [streets, tornadoMarkers]
     // });
-  
-    
+
+
 //     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 //     // createMap(tornadoMarkers);
@@ -168,18 +168,18 @@ var baseMaps = {
 //       var coords = features[i].geometry;
 //       var description = features[i].properties
 //       var event = features[i].properties;
-//       // If the data has lat an lon add them to the map. 
-//       // get the year 
+//       // If the data has lat an lon add them to the map.
+//       // get the year
 //       if (event.yr === year) {
 //         if (coords) {
 
 //             // Add a new marker to the cluster group and bind a pop-up
 //             markers.addLayer(L.marker([coords.coordinates[1], coords.coordinates[0]])
-//               .bindPopup("<h4>"+ title +": " + description.mag + "<br/>Location: " 
+//               .bindPopup("<h4>"+ title +": " + description.mag + "<br/>Location: "
 //                   + description.st + "</h4><hr><p>Date : Time: " + description.date_time + "</p>"));
 //           }
 //       }
-      
+
 
 //     }
 
@@ -249,11 +249,11 @@ function buildMarkers(year){
                 // windMarkers.addLayer(L.marker([location[2], location[3]])
                 // .bindPopup("<h4>" + "Mag : " + location[5] + "<br>Location : " + location[1] + "<br>Type : " + location[4] + "</h4><hr><p>Date : Time: " + location[6] + "</p>"));
             }
-            
-            
+
+
         }
     })
-    
+
 
     tornMarkers.addTo(myMap);
     windMarkers.addTo(myMap);
@@ -277,7 +277,7 @@ control.addTo(myMap);
 
 
 function getYearCharts(year){
-     
+
     tornMarkers.clearLayers();
     windMarkers.clearLayers();
     hailMarkers.clearLayers();
@@ -288,7 +288,7 @@ function getYearCharts(year){
     getBubblePlotData(year);
     renderStackedBar(year);
     createPieChart(year)
-    
+
 }
 // make a function that renders a bubble chart based on the given data value
 function createPieChart(year){
@@ -359,9 +359,9 @@ function renderBubble(year){
 }
 
 function getBubblePlotData(year){
-  
+
     var data = [];
-    
+
     Plotly.d3.json(`/bubble/${year}`,function(bubble_chart_data){
     var tornado_data = {
             x: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
@@ -376,7 +376,7 @@ function getBubblePlotData(year){
             },
             name: 'tornado'
         };
-        
+
         var hail_data = {
             x: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             y: bubble_chart_data['hail']['y'],
@@ -391,7 +391,7 @@ function getBubblePlotData(year){
             },
             name: 'hail'
         };
-        
+
         var wind_data = {
             x: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             y: bubble_chart_data['wind']['y'],
@@ -427,11 +427,11 @@ function getBubblePlotData(year){
             title: "Scaled Magnitude",
             titlefont: {
                 family: "Calibri Heading",
-                size: 14}}   
-                
-                
+                size: 14}}
+
+
         };
-      
+
       if(first == "Y"){
         Plotly.newPlot("bubble-chart", data, layout);
       }else{
@@ -441,8 +441,8 @@ function getBubblePlotData(year){
 
        first = "N";
     });
-  
-}   
+
+}
 
 function renderStackedBar(year){
   var url = "/events/" + year
@@ -507,7 +507,7 @@ function renderStackedBar(year){
           title: "Event Count",
           titlefont: {
               family: "Calibri Heading",
-              size: 14}} 
+              size: 14}}
     };
     Plotly.newPlot("stacked-bar-chart", data, layout)
   })
